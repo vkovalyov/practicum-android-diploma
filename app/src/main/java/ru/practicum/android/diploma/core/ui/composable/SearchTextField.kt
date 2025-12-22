@@ -29,7 +29,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import ru.practicum.android.diploma.R
 import ru.practicum.android.diploma.core.theme.Blue
+import ru.practicum.android.diploma.core.theme.HeightBase
+import ru.practicum.android.diploma.core.theme.PaddingBase
 import ru.practicum.android.diploma.core.theme.RadiusDefault
+
+val END_PADDING = 17.dp
 
 @Composable
 fun SearchTextField(query: String, hintText: String, onValueChange: (String) -> Unit) {
@@ -40,11 +44,12 @@ fun SearchTextField(query: String, hintText: String, onValueChange: (String) -> 
             .fillMaxWidth()
             .clip(RoundedCornerShape(RadiusDefault))
             .background(MaterialTheme.colorScheme.surface)
-            .padding(end = 16.dp),
+            .padding(end = PaddingBase),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Box(
-            modifier = Modifier.weight(1f), contentAlignment = Alignment.CenterStart
+            modifier = Modifier.weight(1f),
+            contentAlignment = Alignment.CenterStart
         ) {
             BasicTextField(
                 value = query,
@@ -57,17 +62,19 @@ fun SearchTextField(query: String, hintText: String, onValueChange: (String) -> 
                 cursorBrush = SolidColor(Blue),
                 singleLine = true,
                 modifier = Modifier
-                    .height(56.dp)
-                    .clip(RoundedCornerShape(8.dp))
+                    .height(HeightBase)
                     .background(MaterialTheme.colorScheme.surface)
                     .padding(
-                        start = 16.dp, end = 16.dp, top = 17.dp, bottom = 17.dp
+                        start = PaddingBase,
+                        end = PaddingBase,
+                        top = END_PADDING,
+                        bottom = END_PADDING
                     ),
                 textStyle = MaterialTheme.typography.bodyLarge.copy(color = MaterialTheme.colorScheme.onSurface)
             )
             if (query.isEmpty()) {
                 Text(
-                    modifier = Modifier.padding(start = 16.dp),
+                    modifier = Modifier.padding(start = PaddingBase),
                     text = hintText,
                     style = MaterialTheme.typography.bodyLarge,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
@@ -87,7 +94,6 @@ fun SearchTextField(query: String, hintText: String, onValueChange: (String) -> 
                         imm.hideSoftInputFromWindow(it.windowToken, 0)
                     }
                     onValueChange("")
-
                 },
                 painter = painterResource(id = R.drawable.close),
                 contentDescription = null,

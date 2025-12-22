@@ -23,7 +23,8 @@ fun ElevatedButton(text: String, onClick: () -> Unit) {
             .height(ButtonHeight),
         shape = RoundedCornerShape(RadiusDefault),
         colors = ButtonDefaults.buttonColors(
-            containerColor = Blue, contentColor = White
+            containerColor = Blue,
+            contentColor = White
         ),
     ) {
         Text(text, style = MaterialTheme.typography.bodyLarge)

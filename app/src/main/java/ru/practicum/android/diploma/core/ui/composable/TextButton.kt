@@ -20,8 +20,7 @@ fun AppTextButton(text: String, onClick: () -> Unit) {
             .fillMaxWidth()
             .height(ButtonHeight),
         shape = RoundedCornerShape(RadiusDefault),
-
-        ) {
+    ) {
         Text(text, style = MaterialTheme.typography.bodyLarge, color = Red)
     }
 }
