@@ -1,0 +1,105 @@
+package ru.practicum.android.diploma.core.ui.composable
+
+import android.app.Activity
+import android.content.Context
+import android.view.inputmethod.InputMethodManager
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
+import ru.practicum.android.diploma.R
+import ru.practicum.android.diploma.core.theme.Blue
+import ru.practicum.android.diploma.core.theme.RadiusDefault
+
+@Composable
+fun SearchTextField(query: String, hintText: String, onValueChange: (String) -> Unit) {
+    val context = LocalContext.current
+    val focusManager = LocalFocusManager.current
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(RadiusDefault))
+            .background(MaterialTheme.colorScheme.surface)
+            .padding(end = 16.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Box(
+            modifier = Modifier.weight(1f), contentAlignment = Alignment.CenterStart
+        ) {
+            BasicTextField(
+                value = query,
+                onValueChange = { newValue ->
+                    onValueChange(newValue)
+                },
+                keyboardActions = KeyboardActions(onDone = {
+                    focusManager.clearFocus()
+                }),
+                cursorBrush = SolidColor(Blue),
+                singleLine = true,
+                modifier = Modifier
+                    .height(56.dp)
+                    .clip(RoundedCornerShape(8.dp))
+                    .background(MaterialTheme.colorScheme.surface)
+                    .padding(
+                        start = 16.dp, end = 16.dp, top = 17.dp, bottom = 17.dp
+                    ),
+                textStyle = MaterialTheme.typography.bodyLarge.copy(color = MaterialTheme.colorScheme.onSurface)
+            )
+            if (query.isEmpty()) {
+                Text(
+                    modifier = Modifier.padding(start = 16.dp),
+                    text = hintText,
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    textAlign = TextAlign.Center
+                )
+            }
+        }
+        if (query.isNotEmpty()) {
+            Icon(
+                modifier = Modifier.clickable(
+                    interactionSource = MutableInteractionSource(),
+                    indication = null,
+                ) {
+                    val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                    val view = (context as? Activity)?.currentFocus
+                    view?.let {
+                        imm.hideSoftInputFromWindow(it.windowToken, 0)
+                    }
+                    onValueChange("")
+
+                },
+                painter = painterResource(id = R.drawable.close),
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.onSurface
+            )
+        } else {
+            Icon(
+                painter = painterResource(id = R.drawable.search),
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.onSurface
+            )
+        }
+    }
+
+}
