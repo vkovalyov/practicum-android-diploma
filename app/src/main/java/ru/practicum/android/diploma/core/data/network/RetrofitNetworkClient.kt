@@ -5,10 +5,10 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
-import ru.practicum.android.diploma.core.data.dto.AreaDto
-import ru.practicum.android.diploma.core.data.dto.IndustryDto
+import ru.practicum.android.diploma.core.data.dto.Area
+import ru.practicum.android.diploma.core.data.dto.Industry
 import ru.practicum.android.diploma.core.data.dto.VacancyDetail
-import ru.practicum.android.diploma.core.data.dto.VacancyDto
+import ru.practicum.android.diploma.core.data.dto.Vacancy
 import ru.practicum.android.diploma.core.domain.model.ApiResult
 import ru.practicum.android.diploma.core.domain.repository.NetworkConnectivity
 
@@ -49,15 +49,15 @@ class RetrofitNetworkClient(val networkConnectivity: NetworkConnectivity) : Netw
         return execute { vacancyApi.getVacancy(id) }
     }
 
-    override suspend fun getIndustries(): ApiResult<List<IndustryDto>> {
+    override suspend fun getIndustries(): ApiResult<List<Industry>> {
         return execute { vacancyApi.getIndustries() }
     }
 
-    override suspend fun getAreas(): ApiResult<List<AreaDto>> {
+    override suspend fun getAreas(): ApiResult<List<Area>> {
         return execute { vacancyApi.getAreas() }
     }
 
-    override suspend fun searchVacancies(query: Map<String, Any>): ApiResult<List<VacancyDto>> {
+    override suspend fun searchVacancies(query: Map<String, Any>): ApiResult<List<Vacancy>> {
         return execute { vacancyApi.searchVacancies(query) }
     }
 

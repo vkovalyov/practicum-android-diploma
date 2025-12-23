@@ -1,8 +1,8 @@
 package ru.practicum.android.diploma.core.data.dto
 
-data class AreaDto(
+data class Area(
     val id: String,
     val name: String,
     val parentId: String,
-    val areas: List<AreaDto>
+    val areas: List<Area>
 )

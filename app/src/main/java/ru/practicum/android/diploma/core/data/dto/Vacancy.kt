@@ -1,8 +1,8 @@
 package ru.practicum.android.diploma.core.data.dto
 
-data class VacancyDto(
+data class Vacancy(
     val id: String,
     val name: String,
-    val salary: SalaryDto?,
-    val employer: EmployerDto?,
+    val salary: Salary?,
+    val employer: Employer?,
 )

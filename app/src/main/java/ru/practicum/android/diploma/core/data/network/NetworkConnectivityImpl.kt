@@ -11,10 +11,11 @@ class NetworkConnectivityImpl(private val context: Context) : NetworkConnectivit
         val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            val network = connectivityManager.activeNetwork ?: return false
-            val capabilities = connectivityManager.getNetworkCapabilities(network) ?: return false
-            capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) &&
-                capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED)
+            val network = connectivityManager.activeNetwork
+            val capabilities = network?.let { connectivityManager.getNetworkCapabilities(it) }
+            capabilities?.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) == true && capabilities.hasCapability(
+                NetworkCapabilities.NET_CAPABILITY_VALIDATED
+            )
         } else {
             @Suppress("DEPRECATION")
             connectivityManager.activeNetworkInfo?.isConnectedOrConnecting == true
