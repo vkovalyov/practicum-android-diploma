@@ -13,7 +13,8 @@ class NetworkConnectivityImpl(private val context: Context) : NetworkConnectivit
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             val network = connectivityManager.activeNetwork
             val capabilities = network?.let { connectivityManager.getNetworkCapabilities(it) }
-            capabilities?.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) == true && capabilities.hasCapability(
+            capabilities?.hasCapability(
+                NetworkCapabilities.NET_CAPABILITY_INTERNET) == true && capabilities.hasCapability(
                 NetworkCapabilities.NET_CAPABILITY_VALIDATED
             )
         } else {
