@@ -1,3 +1,5 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+
 plugins {
     id("com.android.application")
     alias(libs.plugins.jetbrains.kotlin.android)
@@ -23,6 +25,12 @@ android {
     }
 
     buildTypes {
+        debug {
+            val rootFile = rootDir.resolve("develop.properties")
+            val localProps = gradleLocalProperties(rootFile, providers)
+            buildConfigField("String", "API_TOKEN", "\"${localProps["apiAccessToken"]}\"")
+        }
+
         release {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
