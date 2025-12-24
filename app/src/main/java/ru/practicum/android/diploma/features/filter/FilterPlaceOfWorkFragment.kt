@@ -14,16 +14,17 @@ import androidx.compose.material3.Text
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
-import androidx.compose.ui.res.stringResource
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import ru.practicum.android.diploma.R
 import ru.practicum.android.diploma.core.theme.AppTheme
 
-
 class FilterPlaceOfWorkFragment : Fragment() {
+
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
         val composeView = ComposeView(requireContext()).apply {
             setViewCompositionStrategy(
@@ -37,7 +38,7 @@ class FilterPlaceOfWorkFragment : Fragment() {
                                 .fillMaxSize()
                                 .padding(top = innerPadding.calculateTopPadding())
                         ) {
-                            Column(){
+                            Column() {
                                 Text("Выбор места работы")
 
                                 Button(onClick = {
