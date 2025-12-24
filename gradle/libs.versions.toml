@@ -4,12 +4,25 @@ java = "VERSION_1_8"
 
 # Build constants
 minSdk = "26"
-compileSdk = "34"
+compileSdk = "36"
 targetSdk = "33"
 
 # Detekt
 detekt = "1.23.3"
 detektTwitterComposeRules ="0.0.26"
+kotlin = "2.1.0"
+material = "1.13.0"
+coreKtx = "1.17.0"
+retrofitVersoin = "2.11.0"
+converterGsonVersion = "2.9.0"
+roomRuntime = "2.8.0"
+ksp = "2.0.21-1.0.27"
+koinVersion= "3.3.0"
+activityCompose = "1.8.0"
+composeBom = "2024.09.00"
+runtimeLivedata = "1.9.5"
+navigationFragmentKtx = "2.9.6"
+navigationUiKtxVersion = "2.5.3"
 
 [libraries]
 
@@ -21,14 +34,28 @@ staticAnalysis-detektTest = { module = "io.gitlab.arturbosch.detekt:detekt-test"
 staticAnalysis-detektFormatting = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "detekt" }
 staticAnalysis-detektLibraries = { module = "io.gitlab.arturbosch.detekt:detekt-rules-libraries", version.ref = "detekt" }
 staticAnalysis-detektTwitterComposeRules = { module = "com.twitter.compose.rules:detekt", version.ref = "detektTwitterComposeRules" }
-
 # AndroidX
-androidX-core = "androidx.core:core-ktx:1.12.0"
+androidX-core = "androidx.core:core-ktx:1.17.0"
 androidX-appCompat = "androidx.appcompat:appcompat:1.6.1"
-
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+retrofit = {module ="com.squareup.retrofit2:retrofit", version.ref = "retrofitVersoin"}
+converterGson = {module ="com.squareup.retrofit2:converter-gson", version.ref = "converterGsonVersion"}
+androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomRuntime" }
+androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntime" }
+koin = {module ="io.insert-koin:koin-android" , version.ref = "koinVersion"}
 # UI layer libraries
 ui-material = "com.google.android.material:material:1.10.0"
 ui-constraintLayout = "androidx.constraintlayout:constraintlayout:2.1.4"
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
+androidx-compose-ui = { group = "androidx.compose.ui", name = "ui" }
+androidx-compose-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
+androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
+androidx-compose-runtime-livedata = { group = "androidx.compose.runtime", name = "runtime-livedata", version.ref = "runtimeLivedata" }
+androidx-navigation-ui-ktx-v253 = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigationUiKtxVersion" }
 
 # Unit tests
 unitTests-junit = "junit:junit:4.13.2"
@@ -36,5 +63,10 @@ unitTests-junit = "junit:junit:4.13.2"
 # UI tests
 uiTests-junitExt = "androidx.test.ext:junit:1.1.5"
 uiTests-espressoCore = "androidx.test.espresso:espresso-core:3.5.1"
+androidx-navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigationFragmentKtx" }
 
+[plugins]
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 [bundles]
