@@ -6,12 +6,12 @@
 
     <fragment
         android:id="@+id/searchFragment"
-        android:name="ru.practicum.android.diploma.features.vacancies_search.VacancySearchFragment"
+        android:name="ru.practicum.android.diploma.features.vacanciesSearch.VacancySearchFragment"
         android:label="VacancySearchFragment" />
 
     <fragment
         android:id="@+id/favoriteFragment"
-        android:name="ru.practicum.android.diploma.features.vacancies_favorite.VacancyFavoriteFragment"
+        android:name="ru.practicum.android.diploma.features.vacanciesFavorite.VacancyFavoriteFragment"
         android:label="VacancyFavoriteFragment" />
 
     <fragment
@@ -21,7 +21,7 @@
 
     <fragment
         android:id="@+id/vacancyDetailFragment"
-        android:name="ru.practicum.android.diploma.features.vacancy_detail.VacancyDetailFragment" />
+        android:name="ru.practicum.android.diploma.features.vacancyDetail.VacancyDetailFragment" />
 
     <fragment
         android:id="@+id/settingFilterFragment"

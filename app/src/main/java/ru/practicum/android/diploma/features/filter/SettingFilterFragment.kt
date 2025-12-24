@@ -38,7 +38,7 @@ class SettingFilterFragment : Fragment() {
                                 .fillMaxSize()
                                 .padding(top = innerPadding.calculateTopPadding())
                         ) {
-                            Column(){
+                            Column() {
                                 Text("Настройки фильтрации")
                                 Button(onClick = {
                                     findNavController().navigate(R.id.action_to_place_of_work_filter)
@@ -50,15 +50,13 @@ class SettingFilterFragment : Fragment() {
                                 }) {
                                     Text("Выбор отрасли")
                                 }
-
-
                             }
                         }
-
                     }
                 }
             }
         }
+
         return composeView
     }
 }
