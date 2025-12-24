@@ -1,8 +1,8 @@
-package ru.practicum.android.diploma.core.data.dto
+package ru.practicum.android.diploma.features.search.domain.entity
 
 data class Vacancy(
     val id: String,
     val name: String,
-    val salary: Salary?,
     val employer: Employer,
+    val salary: Salary?
 )

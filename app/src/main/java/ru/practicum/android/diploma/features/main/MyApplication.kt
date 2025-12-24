@@ -5,6 +5,7 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import ru.practicum.android.diploma.core.data.di.dbModule
 import ru.practicum.android.diploma.core.data.di.networkModule
+import ru.practicum.android.diploma.features.search.searchModule
 
 class MyApplication : Application() {
 
@@ -15,6 +16,7 @@ class MyApplication : Application() {
             modules(
                 networkModule,
                 dbModule,
+                searchModule,
             )
         }
     }
