@@ -16,7 +16,7 @@
 
     <fragment
         android:id="@+id/teamFragment"
-        android:name="ru.practicum.android.diploma.features.about_team.TeamFragment"
+        android:name="ru.practicum.android.diploma.features.team.TeamFragment"
         android:label="TeamFragment" />
 
     <fragment

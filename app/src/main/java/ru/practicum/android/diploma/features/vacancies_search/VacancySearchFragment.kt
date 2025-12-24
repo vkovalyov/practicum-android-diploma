@@ -24,7 +24,8 @@ import ru.practicum.android.diploma.core.theme.AppTheme
 
 class VacancySearchFragment : Fragment() {
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
 
         val composeView = ComposeView(requireContext()).apply {
