@@ -13,7 +13,8 @@ class MyApplication : Application() {
         startKoin {
             androidContext(this@MyApplication)
             modules(
-                networkModule, dbModule,
+                networkModule,
+                dbModule,
             )
         }
     }
