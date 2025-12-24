@@ -29,7 +29,7 @@ import ru.practicum.android.diploma.core.theme.LightGray
 import ru.practicum.android.diploma.core.theme.PaddingIntoBase
 import ru.practicum.android.diploma.core.theme.RadiusDefault
 import ru.practicum.android.diploma.core.utils.CurrencyFormatter
-import ru.practicum.android.diploma.core.utils.ImageLoaderProvider
+import ru.practicum.android.diploma.core.utils.ImageLoader
 import ru.practicum.android.diploma.features.search.domain.entity.Salary
 import java.text.NumberFormat
 import java.util.Locale
@@ -69,7 +69,7 @@ fun CardVacancy(
             ) {
                 AsyncImage(
                     model = employerLogo,
-                    imageLoader = ImageLoaderProvider.get(LocalContext.current),
+                    imageLoader = ImageLoader.get(LocalContext.current),
                     contentDescription = null,
                     contentScale = ContentScale.Fit,
                     modifier = Modifier
@@ -102,25 +102,31 @@ fun CardVacancy(
 
                 val salaryText = when {
                     salary?.from != null && salary.to != null -> {
-                        stringResource(
-                            R.string.salary_range,
-                            formatter(salary.from),
-                            formatter(salary.to)
-                        ) + " $currency"
+                        "${
+                            stringResource(
+                                R.string.salary_range,
+                                formatter(salary.from),
+                                formatter(salary.to)
+                            )
+                        } $currency"
                     }
 
                     salary?.from != null -> {
-                        stringResource(
-                            R.string.salary_from,
-                            formatter(salary.from)
-                        ) + " $currency"
+                        "${
+                            stringResource(
+                                R.string.salary_from,
+                                formatter(salary.from)
+                            )
+                        } $currency"
                     }
 
                     salary?.to != null -> {
-                        stringResource(
-                            R.string.salary_to,
-                            formatter(salary.to)
-                        ) + " $currency"
+                        "${
+                            stringResource(
+                                R.string.salary_to,
+                                formatter(salary.to)
+                            )
+                        } $currency"
                     }
 
                     else -> stringResource(R.string.salary_not_specified)

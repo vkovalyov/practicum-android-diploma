@@ -19,7 +19,6 @@ fun SearchContent(
     searchVacancies: SearchVacancies,
     onVacancyClick: (String) -> Unit
 ) {
-
     val text = pluralStringResource(
         id = R.plurals.vacancy_count,
         count = searchVacancies.found,

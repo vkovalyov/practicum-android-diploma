@@ -13,7 +13,7 @@ import androidx.compose.ui.res.painterResource
 import ru.practicum.android.diploma.R
 
 @Composable
-fun Initial(){
+fun Initial() {
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
@@ -23,7 +23,7 @@ fun Initial(){
             modifier = Modifier
                 .fillMaxWidth()
                 .aspectRatio(1f),
-                painter = painterResource(id = R.drawable.search_vacancy_logo),
+            painter = painterResource(id = R.drawable.search_vacancy_logo),
             contentDescription = null,
         )
     }

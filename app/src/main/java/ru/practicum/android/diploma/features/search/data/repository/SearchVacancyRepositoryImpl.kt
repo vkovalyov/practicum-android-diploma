@@ -13,7 +13,6 @@ class SearchVacancyRepositoryImpl(private val networkClient: NetworkClient) : Se
     override suspend fun searchVacancies(query: Map<String, String>): ApiResult<SearchVacancies> {
         return when (val response = networkClient.searchVacancies(query)) {
             is ApiResult.Success -> {
-
                 ApiResult.Success(
                     SearchVacancies(
                         found = response.value.found,
@@ -23,12 +22,16 @@ class SearchVacancyRepositoryImpl(private val networkClient: NetworkClient) : Se
                             Vacancy(
                                 id = it.id,
                                 name = it.name,
-                                salary = if (it.salary == null) null else Salary(
-                                    id = it.salary.id,
-                                    it.salary.currency,
-                                    it.salary.from,
-                                    it.salary.to
-                                ),
+                                salary = if (it.salary == null) {
+                                    null
+                                } else {
+                                    Salary(
+                                        id = it.salary.id,
+                                        it.salary.currency,
+                                        it.salary.from,
+                                        it.salary.to
+                                    )
+                                },
                                 employer = Employer(
                                     it.employer.id,
                                     it.employer.name,

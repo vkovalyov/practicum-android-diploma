@@ -45,7 +45,7 @@ fun SearchScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                    actions = {
+                actions = {
                     IconButton(onClick = {}) {
                         Icon(
                             painter = painterResource(id = R.drawable.filter_off),
@@ -75,7 +75,6 @@ fun SearchScreen(
                 .padding(top = innerPadding.calculateTopPadding())
                 .padding(horizontal = PaddingBase)
         ) {
-
             SearchTextField(
                 query,
                 stringResource(R.string.enter_your_request),
