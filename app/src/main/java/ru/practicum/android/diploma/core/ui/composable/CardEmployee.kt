@@ -28,6 +28,7 @@ import ru.practicum.android.diploma.R
 import ru.practicum.android.diploma.core.theme.LightGray
 import ru.practicum.android.diploma.core.theme.PaddingIntoBase
 import ru.practicum.android.diploma.core.theme.RadiusDefault
+import ru.practicum.android.diploma.core.theme.White
 import ru.practicum.android.diploma.core.utils.CurrencyFormatter
 import ru.practicum.android.diploma.core.utils.ImageLoader
 import ru.practicum.android.diploma.features.search.domain.entity.Salary
@@ -66,6 +67,9 @@ fun CardVacancy(
                         color = LightGray,
                         RoundedCornerShape(RadiusDefault)
                     )
+                    .clip(RoundedCornerShape(RadiusDefault))
+                    .background(White)
+
             ) {
                 AsyncImage(
                     model = employerLogo,
@@ -75,6 +79,7 @@ fun CardVacancy(
                     modifier = Modifier
                         .padding(IMAGE_PADDING)
                         .matchParentSize()
+                        .background(White)
                         .clip(RoundedCornerShape(RadiusDefault)),
                     placeholder = painterResource(R.drawable.placeholder),
                 )

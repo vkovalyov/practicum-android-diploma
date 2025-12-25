@@ -8,6 +8,8 @@
     <string name="search_for_vacancies">Поиск вакансий</string>
     <string name="no_such_vacancies">Таких вакансий нет</string>
     <string name="enter_your_request">Введите запрос</string>
+    <string name="server_error">Ошибка сервера</string>
+
 
     <string name="to">до</string>
     <string name="from">от</string>
@@ -31,4 +33,16 @@
     <string name="phone">Телефон</string>
     <string name="required_experience">Требуемый опыт</string>
     <string name="server_error">Ошибка сервера</string>
+    <string name="worked_on_the_app">Над приложением пыхтела команда 27/2</string>
+    <string name="kovelv">Ковалев Владимир</string>
+    <string name="kovelv_url">https://app.pachca.com/chats/3633855</string>
+    <string name="mahyanov">Артём Маханьков</string>
+    <string name="mahyanov_url">https://app.pachca.com/chats/32688554</string>
+
+    <string name="dark_theme">Тёмная тема</string>
+    <string name="cliker">Кликер</string>
+    <string name="score">Score</string>
+
+    <string name="terms_of_use">Условия пользования приложением</string>
+    <string name="terms_of_use_url">https://telegra.ph/Usloviya-polzovaniya-prilozheniem-ili-Polzovatelskoe-soglashenieLicenzionnoe-soglashenie-12-25</string>
 </resources>
