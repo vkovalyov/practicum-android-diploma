@@ -32,7 +32,6 @@
     <string name="email">Email</string>
     <string name="phone">Телефон</string>
     <string name="required_experience">Требуемый опыт</string>
-    <string name="server_error">Ошибка сервера</string>
     <string name="worked_on_the_app">Над приложением пыхтела команда 27/2</string>
     <string name="kovelv">Ковалев Владимир</string>
     <string name="kovelv_url">https://app.pachca.com/chats/3633855</string>
