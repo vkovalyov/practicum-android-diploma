@@ -1,6 +1,5 @@
 package ru.practicum.android.diploma.features.detail.data.repository
 
-import ru.practicum.android.diploma.core.data.dto.VacancyDetail as VacancyDetailDto
 import ru.practicum.android.diploma.core.data.network.NetworkClient
 import ru.practicum.android.diploma.core.domain.model.ApiResult
 import ru.practicum.android.diploma.features.detail.domain.entity.Address
@@ -22,7 +21,7 @@ class VacancyDetailRepositoryImpl(
         }
     }
 
-    private fun mapToEntity(dto: VacancyDetailDto) = VacancyDetail(
+    private fun mapToEntity(dto: ru.practicum.android.diploma.core.data.dto.VacancyDetail) = VacancyDetail(
         id = dto.id,
         name = dto.name,
         salary = dto.salary?.let { Salary(from = it.from, to = it.to, currency = it.currency) },
