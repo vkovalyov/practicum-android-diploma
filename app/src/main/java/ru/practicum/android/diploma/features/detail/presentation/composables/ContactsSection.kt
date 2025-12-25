@@ -33,13 +33,13 @@ fun ContactsSection(
     Spacer(Modifier.height(8.dp))
 
     contacts.name?.takeIf { it.isNotEmpty() }?.let {
-        Text(stringResource(R.string.contact_person), style = MaterialTheme.typography.bodySmall)
+        Text(stringResource(R.string.contact_person), style = MaterialTheme.typography.bodyLarge)
         Text(it, style = MaterialTheme.typography.bodyMedium)
         Spacer(Modifier.height(8.dp))
     }
 
     contacts.email?.takeIf { it.isNotEmpty() }?.let { email ->
-        Text(stringResource(R.string.email), style = MaterialTheme.typography.bodySmall)
+        Text(stringResource(R.string.email), style = MaterialTheme.typography.bodyLarge)
         Text(
             text = email,
             style = MaterialTheme.typography.bodyMedium,
@@ -51,7 +51,7 @@ fun ContactsSection(
     }
 
     contacts.phones?.forEach { phone ->
-        Text(stringResource(R.string.phone), style = MaterialTheme.typography.bodySmall)
+        Text(stringResource(R.string.phone), style = MaterialTheme.typography.bodyLarge)
         Text(
             text = phone,
             style = MaterialTheme.typography.bodyMedium,

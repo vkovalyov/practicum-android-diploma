@@ -38,6 +38,7 @@ fun ErrorContent() {
         Text(
             text = stringResource(R.string.server_error),
             style = MaterialTheme.typography.titleMedium,
+            color = MaterialTheme.colorScheme.onBackground,
             textAlign = TextAlign.Center
         )
     }
@@ -55,6 +56,7 @@ fun NoInternetContent() {
         Text(
             text = stringResource(R.string.no_internet),
             style = MaterialTheme.typography.titleMedium,
+            color = MaterialTheme.colorScheme.onBackground,
             textAlign = TextAlign.Center
         )
     }

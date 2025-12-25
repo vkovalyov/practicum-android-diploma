@@ -106,7 +106,8 @@ private fun VacancyDetailTopBar(
             IconButton(onClick = onBackClick) {
                 Icon(
                     painter = painterResource(R.drawable.back_arrow),
-                    contentDescription = null
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.onBackground
                 )
             }
         },
@@ -115,13 +116,15 @@ private fun VacancyDetailTopBar(
                 IconButton(onClick = onShareClick) {
                     Icon(
                         painter = painterResource(R.drawable.sharing),
-                        contentDescription = null
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.onBackground
                     )
                 }
                 IconButton(onClick = onFavoriteClick) {
                     Icon(
                         painter = painterResource(R.drawable.favorites_off),
-                        contentDescription = null
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.onBackground
                     )
                 }
             }

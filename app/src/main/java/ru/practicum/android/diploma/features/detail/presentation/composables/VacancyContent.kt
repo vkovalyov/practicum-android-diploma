@@ -12,6 +12,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import ru.practicum.android.diploma.R
 import ru.practicum.android.diploma.core.theme.PaddingBase
@@ -35,7 +37,7 @@ fun VacancyContent(
     ) {
         Text(
             text = vacancy.name,
-            style = MaterialTheme.typography.headlineMedium,
+            style = MaterialTheme.typography.headlineLarge,
             color = MaterialTheme.colorScheme.onBackground
         )
         Spacer(Modifier.height(8.dp))
@@ -53,8 +55,8 @@ fun VacancyContent(
         vacancy.experience?.let {
             Text(
                 text = stringResource(R.string.required_experience),
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
+                style = MaterialTheme.typography.bodyLarge,
+                color = MaterialTheme.colorScheme.onBackground
             )
             Text(
                 text = it,
@@ -116,21 +118,48 @@ private fun formatSalary(salary: Salary?): String {
 
 @Composable
 fun HtmlText(html: String) {
-    val cleanText = html
+    val textColor = MaterialTheme.colorScheme.onBackground
+    val normalStyle = MaterialTheme.typography.bodyMedium.toSpanStyle()
+    val boldStyle = MaterialTheme.typography.bodyLarge.toSpanStyle()
+
+    val text = html
         .replace(Regex("<br\\s*/?>"), "\n")
         .replace(Regex("<li>"), "• ")
         .replace(Regex("</li>"), "\n")
-        .replace(Regex("<[^>]*>"), "")
+        .replace(Regex("<ul>|</ul>|<ol>|</ol>"), "")
+        .replace(Regex("<p>"), "\n")
+        .replace(Regex("</p>"), "\n")
         .replace("&nbsp;", " ")
         .replace("&amp;", "&")
         .replace("&lt;", "<")
         .replace("&gt;", ">")
         .replace("&quot;", "\"")
+        .replace(Regex("<[^>]*>"), "")
+        .replace(Regex("(?m)^\\s*[-–—]\\s*"), "• ")
+        .replace(Regex("•(?!\\s)"), "• ")
+        .replace(Regex("\n{3,}"), "\n\n")
         .trim()
 
+    val annotatedString = buildAnnotatedString {
+        val lines = text.split("\n")
+        lines.forEachIndexed { index, line ->
+            val trimmedLine = line.trim()
+            val isSubheading = trimmedLine.isNotEmpty() &&
+                trimmedLine.endsWith(":") &&
+                trimmedLine.length < 50 &&
+                !trimmedLine.startsWith("•")
+
+            if (isSubheading) {
+                withStyle(boldStyle) { append(trimmedLine) }
+            } else {
+                withStyle(normalStyle) { append(line) }
+            }
+            if (index < lines.lastIndex) append("\n")
+        }
+    }
+
     Text(
-        text = cleanText,
-        style = MaterialTheme.typography.bodyMedium,
-        color = MaterialTheme.colorScheme.onBackground
+        text = annotatedString,
+        color = textColor
     )
 }
