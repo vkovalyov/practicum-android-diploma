@@ -30,10 +30,9 @@ class VacancySearchFragment : Fragment() {
                 ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed
             )
             setContent {
-                Surface() {
-                    AppTheme {
-                        SearchScreen(viewModel, onVacancyClick = ::openVacancyDetail)
-                    }
+                AppTheme {
+                    SearchScreen(viewModel, onVacancyClick = ::openVacancyDetail)
+
                 }
             }
         }

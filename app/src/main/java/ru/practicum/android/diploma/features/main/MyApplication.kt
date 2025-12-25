@@ -6,6 +6,7 @@ import org.koin.core.context.startKoin
 import ru.practicum.android.diploma.core.data.di.dbModule
 import ru.practicum.android.diploma.core.data.di.networkModule
 import ru.practicum.android.diploma.features.search.searchModule
+import ru.practicum.android.diploma.features.team.teamModule
 
 class MyApplication : Application() {
 
@@ -17,6 +18,7 @@ class MyApplication : Application() {
                 networkModule,
                 dbModule,
                 searchModule,
+                teamModule
             )
         }
     }
