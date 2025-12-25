@@ -51,7 +51,7 @@ class SearchVacancyViewModel(val interactor: SearchVacancyInteractor) : ViewMode
         renderState(SearchVacancyState.Initial)
     }
 
-    private fun renderState(state: SearchVacancyState) {
+      fun renderState(state: SearchVacancyState) {
         stateLiveData.postValue(state)
     }
 
