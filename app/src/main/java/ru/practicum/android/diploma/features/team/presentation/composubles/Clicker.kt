@@ -6,7 +6,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
@@ -28,6 +27,8 @@ import kotlinx.coroutines.delay
 import ru.practicum.android.diploma.R
 import ru.practicum.android.diploma.features.team.presentation.mvvm.TeamViewModel
 
+const val PAUSE_TIME = 50L
+
 @Composable
 fun Clicker(viewModel: TeamViewModel) {
     Column(
@@ -42,7 +43,7 @@ fun Clicker(viewModel: TeamViewModel) {
         LaunchedEffect(isPressed) {
             if (isPressed) {
                 viewModel.changeScore()
-                delay(50)
+                delay(PAUSE_TIME)
                 isPressed = false
             }
         }

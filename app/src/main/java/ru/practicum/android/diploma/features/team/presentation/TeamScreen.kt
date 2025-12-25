@@ -29,7 +29,6 @@ import ru.practicum.android.diploma.features.team.presentation.mvvm.TeamViewMode
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TeamScreen(viewModel: TeamViewModel) {
-
     val isDarkTheme by viewModel.observeState().observeAsState(initial = false)
 
     Scaffold(topBar = {
