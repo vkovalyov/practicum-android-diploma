@@ -4,7 +4,9 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -14,8 +16,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
 import ru.practicum.android.diploma.R
+import ru.practicum.android.diploma.core.theme.PaddingBase
 
 @Composable
 fun NoInternetResult() {
@@ -25,10 +27,13 @@ fun NoInternetResult() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Image(
+            modifier = Modifier
+                .fillMaxWidth()
+                .aspectRatio(2f),
             painter = painterResource(id = R.drawable.no_internet),
             contentDescription = null,
         )
-        Spacer(Modifier.height(16.dp))
+        Spacer(Modifier.height(PaddingBase))
         Text(
             text = stringResource(R.string.no_internet),
             color = MaterialTheme.colorScheme.onBackground,

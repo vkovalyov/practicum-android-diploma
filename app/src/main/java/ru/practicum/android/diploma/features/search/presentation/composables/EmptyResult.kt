@@ -21,7 +21,7 @@ import ru.practicum.android.diploma.core.theme.PaddingBase
 import ru.practicum.android.diploma.core.ui.composable.Chip
 
 @Composable
-fun ErrorResult() {
+fun EmptyResult() {
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -36,12 +36,12 @@ fun ErrorResult() {
                 modifier = Modifier
                     .fillMaxWidth()
                     .aspectRatio(2f),
-                painter = painterResource(id = R.drawable.server_error),
+                painter = painterResource(id = R.drawable.empty_result),
                 contentDescription = null,
             )
             Spacer(Modifier.height(PaddingBase))
             Text(
-                text = stringResource(R.string.server_error),
+                text = stringResource(R.string.unable_retrieve_job),
                 color = MaterialTheme.colorScheme.onBackground,
                 style = MaterialTheme.typography.titleMedium,
                 textAlign = TextAlign.Center

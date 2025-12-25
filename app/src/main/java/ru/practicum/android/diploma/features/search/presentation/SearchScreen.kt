@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import ru.practicum.android.diploma.R
 import ru.practicum.android.diploma.core.theme.PaddingBase
 import ru.practicum.android.diploma.core.ui.composable.SearchTextField
+import ru.practicum.android.diploma.features.search.presentation.composables.EmptyResult
 import ru.practicum.android.diploma.features.search.presentation.composables.ErrorResult
 import ru.practicum.android.diploma.features.search.presentation.composables.Initial
 import ru.practicum.android.diploma.features.search.presentation.composables.Loading
@@ -88,7 +89,7 @@ fun SearchScreen(
                     onVacancyClick
                 )
 
-                is SearchVacancyState.ContentEmpty -> ErrorResult()
+                is SearchVacancyState.ContentEmpty -> EmptyResult()
                 SearchVacancyState.Error -> ErrorResult()
                 SearchVacancyState.Initial -> Initial()
                 SearchVacancyState.Loading -> Loading()
