@@ -4,19 +4,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.ui.Modifier
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.fragment.app.Fragment
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.practicum.android.diploma.core.theme.AppTheme
+import ru.practicum.android.diploma.features.team.presentation.TeamScreen
+import ru.practicum.android.diploma.features.team.presentation.mvvm.TeamViewModel
+import kotlin.getValue
 
 class TeamFragment : Fragment() {
+    private val viewModel: TeamViewModel by viewModel()
 
+    @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -28,20 +29,7 @@ class TeamFragment : Fragment() {
             )
             setContent {
                 AppTheme {
-                    Scaffold { innerPadding ->
-                        Box(
-                            modifier = Modifier
-                                .fillMaxSize()
-                                .padding(top = innerPadding.calculateTopPadding())
-                        ) {
-                            Box(
-                                modifier = Modifier.fillMaxSize()
-                            ) {
-                                Text("TeamFragment")
-                            }
-                        }
-
-                    }
+                    TeamScreen(viewModel)
                 }
             }
         }
