@@ -22,6 +22,7 @@ class VacancyDetailFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        val vacancyId = arguments?.getString("vacancyId")
         val composeView = ComposeView(requireContext()).apply {
             setViewCompositionStrategy(
                 ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed
@@ -37,7 +38,7 @@ class VacancyDetailFragment : Fragment() {
                             Box(
                                 modifier = Modifier.fillMaxSize()
                             ) {
-                                Text("VacancyDetailFragment")
+                                Text("VacancyDetail - ID: $vacancyId")
                             }
                         }
 

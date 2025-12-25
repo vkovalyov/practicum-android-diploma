@@ -6,7 +6,7 @@ import retrofit2.http.Path
 import retrofit2.http.QueryMap
 import ru.practicum.android.diploma.core.data.dto.Area
 import ru.practicum.android.diploma.core.data.dto.Industry
-import ru.practicum.android.diploma.core.data.dto.Vacancy
+import ru.practicum.android.diploma.core.data.dto.SearchVacanciesResponse
 import ru.practicum.android.diploma.core.data.dto.VacancyDetail
 
 interface ApiService {
@@ -21,6 +21,6 @@ interface ApiService {
 
     @GET("vacancies")
     suspend fun searchVacancies(
-        @QueryMap queries: Map<String, Any>
-    ): Response<List<Vacancy>>
+        @QueryMap queries: Map<String, String>
+    ): Response<SearchVacanciesResponse>
 }

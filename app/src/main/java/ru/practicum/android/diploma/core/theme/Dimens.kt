@@ -9,3 +9,5 @@ val ButtonHeight = 59.dp
 val HeightBase = 56.dp
 
 val PaddingBase = 16.dp
+
+val PaddingIntoBase = 8.dp
