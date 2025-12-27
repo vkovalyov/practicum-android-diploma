@@ -24,6 +24,14 @@
         <item quantity="other">Найдено %d вакансий</item>
     </plurals>
 
+    <string name="vacancy">Вакансия</string>
+    <string name="vacancy_description">Описание вакансии</string>
+    <string name="key_skills">Ключевые навыки</string>
+    <string name="contacts">Контакты</string>
+    <string name="contact_person">Контактное лицо</string>
+    <string name="email">Email</string>
+    <string name="phone">Телефон</string>
+    <string name="required_experience">Требуемый опыт</string>
     <string name="worked_on_the_app">Над приложением пыхтела команда 27/2</string>
     <string name="kovelv">Ковалев Владимир</string>
     <string name="kovelv_url">https://app.pachca.com/chats/3633855</string>
