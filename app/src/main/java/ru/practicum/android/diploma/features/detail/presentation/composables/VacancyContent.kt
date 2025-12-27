@@ -23,6 +23,8 @@ import ru.practicum.android.diploma.features.detail.domain.entity.VacancyDetail
 import java.text.NumberFormat
 import java.util.Locale
 
+private const val MAX_SUBHEADING_LENGTH = 50
+
 @Composable
 fun VacancyContent(
     vacancy: VacancyDetail,
@@ -146,7 +148,7 @@ fun HtmlText(html: String) {
             val trimmedLine = line.trim()
             val isSubheading = trimmedLine.isNotEmpty() &&
                 trimmedLine.endsWith(":") &&
-                trimmedLine.length < 50 &&
+                trimmedLine.length < MAX_SUBHEADING_LENGTH &&
                 !trimmedLine.startsWith("•")
 
             if (isSubheading) {

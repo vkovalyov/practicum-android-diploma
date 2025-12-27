@@ -24,6 +24,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import ru.practicum.android.diploma.R
+import ru.practicum.android.diploma.core.theme.Black
 import ru.practicum.android.diploma.core.theme.LightGray
 import ru.practicum.android.diploma.core.theme.PaddingBase
 import ru.practicum.android.diploma.core.theme.RadiusDefault
@@ -69,7 +70,7 @@ fun EmployerSection(vacancy: VacancyDetail) {
                 Text(
                     text = vacancy.employer?.name ?: "",
                     style = MaterialTheme.typography.titleMedium,
-                    color = MaterialTheme.colorScheme.onBackground
+                    color = Black
                 )
                 val location = vacancy.address?.fullAddress
                     ?: vacancy.address?.city
@@ -79,7 +80,7 @@ fun EmployerSection(vacancy: VacancyDetail) {
                     Text(
                         text = location,
                         style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onBackground
+                        color = Black
                     )
                 }
             }
