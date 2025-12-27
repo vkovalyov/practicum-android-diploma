@@ -4,21 +4,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.practicum.android.diploma.R
 import ru.practicum.android.diploma.core.theme.AppTheme
+import ru.practicum.android.diploma.features.favorite.presentation.FavoriteScreen
+import ru.practicum.android.diploma.features.favorite.presentation.mvvm.FavoriteViewModel
 
 class VacancyFavoriteFragment : Fragment() {
+    private val viewModel: FavoriteViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,28 +29,15 @@ class VacancyFavoriteFragment : Fragment() {
             )
             setContent {
                 AppTheme {
-                    Scaffold { innerPadding ->
-                        Box(
-                            modifier = Modifier
-                                .fillMaxSize()
-                                .padding(top = innerPadding.calculateTopPadding())
-                        ) {
-                            Box(
-                                modifier = Modifier.fillMaxSize()
-                            ) {
-                                Text("VacancyFavoriteFragment")
-                                Button(onClick = {
-                                    findNavController().navigate(R.id.action_to_detail)
-                                }) {
-                                    Text("Избранное детальное")
-                                }
-                            }
-                        }
-
-                    }
+                    FavoriteScreen(viewModel, onVacancyClick = ::openVacancyDetail)
                 }
             }
         }
         return composeView
+    }
+
+    private fun openVacancyDetail(id: String) {
+        val bundle = bundleOf("vacancyId" to id)
+        findNavController().navigate(R.id.action_favorite_to_detail, bundle)
     }
 }

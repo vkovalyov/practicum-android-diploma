@@ -35,8 +35,7 @@ class VacancyDetailFragment : Fragment() {
                 AppTheme {
                     VacancyDetailScreen(
                         viewModel = viewModel,
-                        onBackClick = { findNavController().popBackStack() },
-                        onFavoriteClick = { }
+                        onBackClick = { findNavController().popBackStack() }
                     )
                 }
             }

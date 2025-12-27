@@ -9,10 +9,10 @@ import ru.practicum.android.diploma.features.detail.domain.repository.VacancyDet
 import ru.practicum.android.diploma.features.detail.presentation.mvvm.VacancyDetailViewModel
 
 val detailModule = module {
-    single<VacancyDetailRepository> { VacancyDetailRepositoryImpl(get()) }
+    single<VacancyDetailRepository> { VacancyDetailRepositoryImpl(get(), get()) }
     single<VacancyDetailInteractor> { VacancyDetailInteractorImpl(get()) }
 
     viewModel { (vacancyId: String) ->
-        VacancyDetailViewModel(vacancyId, get())
+        VacancyDetailViewModel(vacancyId, get(), get())
     }
 }
