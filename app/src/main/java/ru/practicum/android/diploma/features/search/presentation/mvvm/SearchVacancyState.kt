@@ -8,6 +8,8 @@ sealed interface SearchVacancyState {
 
     data object Loading : SearchVacancyState
 
+    data class LoadingPage(val searchVacancies: SearchVacancies) : SearchVacancyState
+
     data class Content(val searchVacancies: SearchVacancies) : SearchVacancyState
 
     data object ContentEmpty : SearchVacancyState
