@@ -29,41 +29,56 @@ class VacancyDetailRepositoryImpl(
         return cached?.let { ApiResult.Success(it.toDomain()) }
     }
 
-    private fun FavoriteVacancyEntity.toDomain(): VacancyDetail {
+    private fun FavoriteVacancyEntity.toDomain() = VacancyDetail(
+        id = id,
+        name = name,
+        salary = mapSalary(),
+        address = mapAddress(),
+        experience = experience,
+        schedule = schedule,
+        employment = employment,
+        contacts = mapContacts(),
+        employer = employerName?.let { Employer(id = "", name = it, logo = employerLogoUrl) },
+        areaName = areaName,
+        url = alternateUrl,
+        description = description,
+        skills = keySkills?.split(", ")?.filter { it.isNotBlank() }
+    )
+
+    private fun FavoriteVacancyEntity.mapSalary(): Salary? {
+        return if (salaryFrom != null || salaryTo != null) {
+            Salary(from = salaryFrom, to = salaryTo, currency = salaryCurrency)
+        } else {
+            null
+        }
+    }
+
+    private fun FavoriteVacancyEntity.mapAddress(): Address? {
         val hasAddress = addressCity != null || addressStreet != null ||
             addressBuilding != null || addressFull != null
-        val hasContacts = contactName != null || contactEmail != null || contactPhones != null
+        return if (hasAddress) {
+            Address(
+                city = addressCity,
+                street = addressStreet,
+                building = addressBuilding,
+                fullAddress = addressFull
+            )
+        } else {
+            null
+        }
+    }
 
-        return VacancyDetail(
-            id = id,
-            name = name,
-            salary = if (salaryFrom != null || salaryTo != null) {
-                Salary(from = salaryFrom, to = salaryTo, currency = salaryCurrency)
-            } else null,
-            address = if (hasAddress) {
-                Address(
-                    city = addressCity,
-                    street = addressStreet,
-                    building = addressBuilding,
-                    fullAddress = addressFull
-                )
-            } else null,
-            experience = experience,
-            schedule = schedule,
-            employment = employment,
-            contacts = if (hasContacts) {
-                Contacts(
-                    name = contactName,
-                    email = contactEmail,
-                    phones = contactPhones?.split(";")?.filter { it.isNotBlank() }
-                )
-            } else null,
-            employer = employerName?.let { Employer(id = "", name = it, logo = employerLogoUrl) },
-            areaName = areaName,
-            url = alternateUrl,
-            description = description,
-            skills = keySkills?.split(", ")?.filter { it.isNotBlank() }
-        )
+    private fun FavoriteVacancyEntity.mapContacts(): Contacts? {
+        val hasContacts = contactName != null || contactEmail != null || contactPhones != null
+        return if (hasContacts) {
+            Contacts(
+                name = contactName,
+                email = contactEmail,
+                phones = contactPhones?.split(";")?.filter { it.isNotBlank() }
+            )
+        } else {
+            null
+        }
     }
 
     private fun mapToEntity(dto: ru.practicum.android.diploma.core.data.dto.VacancyDetail) = VacancyDetail(
