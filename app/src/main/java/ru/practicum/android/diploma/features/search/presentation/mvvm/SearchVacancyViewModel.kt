@@ -59,7 +59,7 @@ class SearchVacancyViewModel(val interactor: SearchVacancyInteractor) : ViewMode
             searchJob?.cancel()
             searchJob = viewModelScope.launch {
                 delay(SEARCH_DEBOUNCE_DELAY)
-                request(latestSearchText ?: "")
+                request(latestSearchText)
             }
         }
 
