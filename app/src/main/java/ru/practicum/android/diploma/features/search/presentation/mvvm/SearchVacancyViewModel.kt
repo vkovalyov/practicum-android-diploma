@@ -20,7 +20,7 @@ class SearchVacancyViewModel(val interactor: SearchVacancyInteractor) : ViewMode
 
     private var latestSearchText: String = ""
 
-    private var currentPage: Int = 1
+    private var currentPage: Int = START_PAGE
     private var maxPages: Int = 0
     private var searchedVacancy = SearchVacancies(
         found = 0,
@@ -34,6 +34,8 @@ class SearchVacancyViewModel(val interactor: SearchVacancyInteractor) : ViewMode
             return
         }
 
+        currentPage = START_PAGE
+        searchedVacancy= searchedVacancy.copy(found = 0, items = emptyList(), page = 1)
         latestSearchText = changedText
         searchJob?.cancel()
         searchJob = viewModelScope.launch {
@@ -113,5 +115,7 @@ class SearchVacancyViewModel(val interactor: SearchVacancyInteractor) : ViewMode
         private const val SEARCH_DEBOUNCE_DELAY = 2000L
 
         private const val EMPTY_SEARCH = 0
+
+        private const val START_PAGE = 1
     }
 }

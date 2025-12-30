@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -28,7 +29,7 @@ fun SearchContent(
     onVacancyClick: (String) -> Unit,
     searchNextPage: () -> Unit,
     loading: Boolean = false,
-    listState: LazyListState,
+    listState: LazyListState = rememberLazyListState(),
 ) {
     val text = pluralStringResource(
         id = R.plurals.vacancy_count,

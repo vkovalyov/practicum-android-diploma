@@ -100,7 +100,7 @@ fun SearchScreen(
                     onVacancyClick,
                     { viewModel.searchNextPage() },
                     loading = true,
-                    listState
+
                 )
 
                 is SearchVacancyState.ContentEmpty -> EmptyResult()
