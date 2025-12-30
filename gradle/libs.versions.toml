@@ -23,6 +23,7 @@ composeBom = "2024.09.00"
 runtimeLivedata = "1.9.5"
 navigationFragmentKtx = "2.9.6"
 navigationUiKtxVersion = "2.5.3"
+foundation = "1.10.0"
 
 [libraries]
 
@@ -64,6 +65,7 @@ unitTests-junit = "junit:junit:4.13.2"
 uiTests-junitExt = "androidx.test.ext:junit:1.1.5"
 uiTests-espressoCore = "androidx.test.espresso:espresso-core:3.5.1"
 androidx-navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigationFragmentKtx" }
+androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation", version.ref = "foundation" }
 
 [plugins]
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
