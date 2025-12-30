@@ -20,5 +20,12 @@ data class FavoriteVacancyEntity(
     val description: String?,
     val keySkills: String?,
     val alternateUrl: String?,
+    val addressCity: String?,
+    val addressStreet: String?,
+    val addressBuilding: String?,
+    val addressFull: String?,
+    val contactName: String?,
+    val contactEmail: String?,
+    val contactPhones: String?,
     val addedAt: Long = System.currentTimeMillis()
 )

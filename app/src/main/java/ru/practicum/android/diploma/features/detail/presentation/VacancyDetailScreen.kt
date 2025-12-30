@@ -21,7 +21,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import ru.practicum.android.diploma.R
-import ru.practicum.android.diploma.features.detail.domain.entity.VacancyDetail
+import ru.practicum.android.diploma.core.theme.Red
 import ru.practicum.android.diploma.features.detail.presentation.composables.ErrorContent
 import ru.practicum.android.diploma.features.detail.presentation.composables.LoadingContent
 import ru.practicum.android.diploma.features.detail.presentation.composables.NoInternetContent
@@ -33,16 +33,17 @@ import ru.practicum.android.diploma.features.detail.presentation.mvvm.VacancyDet
 @Composable
 fun VacancyDetailScreen(
     viewModel: VacancyDetailViewModel,
-    onBackClick: () -> Unit,
-    onFavoriteClick: (VacancyDetail) -> Unit
+    onBackClick: () -> Unit
 ) {
     val state by viewModel.state.observeAsState(VacancyDetailState.Loading)
+    val isFavorite by viewModel.isFavorite.observeAsState(false)
     val context = LocalContext.current
 
     Scaffold(
         topBar = {
             VacancyDetailTopBar(
                 state = state,
+                isFavorite = isFavorite,
                 onBackClick = onBackClick,
                 onShareClick = {
                     val vacancy = (state as VacancyDetailState.Content).vacancy
@@ -53,7 +54,8 @@ fun VacancyDetailScreen(
                     context.startActivity(Intent.createChooser(shareIntent, null))
                 },
                 onFavoriteClick = {
-                    onFavoriteClick((state as VacancyDetailState.Content).vacancy)
+                    val vacancy = (state as VacancyDetailState.Content).vacancy
+                    viewModel.toggleFavorite(vacancy)
                 }
             )
         }
@@ -91,6 +93,7 @@ fun VacancyDetailScreen(
 @Composable
 private fun VacancyDetailTopBar(
     state: VacancyDetailState,
+    isFavorite: Boolean,
     onBackClick: () -> Unit,
     onShareClick: () -> Unit,
     onFavoriteClick: () -> Unit
@@ -122,9 +125,11 @@ private fun VacancyDetailTopBar(
                 }
                 IconButton(onClick = onFavoriteClick) {
                     Icon(
-                        painter = painterResource(R.drawable.favorites_off),
+                        painter = painterResource(
+                            if (isFavorite) R.drawable.favorites_on else R.drawable.favorites_off
+                        ),
                         contentDescription = null,
-                        tint = MaterialTheme.colorScheme.onBackground
+                        tint = if (isFavorite) Red else MaterialTheme.colorScheme.onBackground
                     )
                 }
             }

@@ -1,5 +1,7 @@
 package ru.practicum.android.diploma.features.detail.data.repository
 
+import ru.practicum.android.diploma.core.data.db.FavoriteVacancyDao
+import ru.practicum.android.diploma.core.data.db.FavoriteVacancyEntity
 import ru.practicum.android.diploma.core.data.network.NetworkClient
 import ru.practicum.android.diploma.core.domain.model.ApiResult
 import ru.practicum.android.diploma.features.detail.domain.entity.Address
@@ -10,14 +12,72 @@ import ru.practicum.android.diploma.features.detail.domain.entity.VacancyDetail
 import ru.practicum.android.diploma.features.detail.domain.repository.VacancyDetailRepository
 
 class VacancyDetailRepositoryImpl(
-    private val networkClient: NetworkClient
+    private val networkClient: NetworkClient,
+    private val favoriteVacancyDao: FavoriteVacancyDao
 ) : VacancyDetailRepository {
 
     override suspend fun getVacancyById(id: String): ApiResult<VacancyDetail> {
         return when (val response = networkClient.getVacancyById(id)) {
             is ApiResult.Success -> ApiResult.Success(mapToEntity(response.value))
-            is ApiResult.Error -> ApiResult.Error
-            is ApiResult.NoInternet -> ApiResult.NoInternet
+            is ApiResult.Error -> tryGetFromCache(id) ?: ApiResult.Error
+            is ApiResult.NoInternet -> tryGetFromCache(id) ?: ApiResult.NoInternet
+        }
+    }
+
+    private suspend fun tryGetFromCache(id: String): ApiResult<VacancyDetail>? {
+        val cached = favoriteVacancyDao.getVacancyById(id)
+        return cached?.let { ApiResult.Success(it.toDomain()) }
+    }
+
+    private fun FavoriteVacancyEntity.toDomain() = VacancyDetail(
+        id = id,
+        name = name,
+        salary = mapSalary(),
+        address = mapAddress(),
+        experience = experience,
+        schedule = schedule,
+        employment = employment,
+        contacts = mapContacts(),
+        employer = employerName?.let { Employer(id = "", name = it, logo = employerLogoUrl) },
+        areaName = areaName,
+        url = alternateUrl,
+        description = description,
+        skills = keySkills?.split(", ")?.filter { it.isNotBlank() }
+    )
+
+    private fun FavoriteVacancyEntity.mapSalary(): Salary? {
+        return if (salaryFrom != null || salaryTo != null) {
+            Salary(from = salaryFrom, to = salaryTo, currency = salaryCurrency)
+        } else {
+            null
+        }
+    }
+
+    private fun FavoriteVacancyEntity.mapAddress(): Address? {
+        val hasAddress = addressCity != null || addressStreet != null ||
+            addressBuilding != null || addressFull != null
+        return if (hasAddress) {
+            Address(
+                city = addressCity,
+                street = addressStreet,
+                building = addressBuilding,
+                fullAddress = addressFull
+            )
+        } else {
+            null
+        }
+    }
+
+    private fun FavoriteVacancyEntity.mapContacts(): Contacts? {
+        val hasContacts = contactName != null || contactEmail != null || contactPhones != null
+        return if (hasContacts) {
+            Contacts(
+                name = contactName,
+                email = contactEmail,
+                phones = contactPhones?.split(";")?.filter { it.isNotBlank() }
+            )
+        } else {
+            null
         }
     }
 

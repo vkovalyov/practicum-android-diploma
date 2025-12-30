@@ -4,6 +4,7 @@
     <string name="favorite">Избранное</string>
     <string name="team">Команда</string>
     <string name="unable_retrieve_job">Не удалось получить список вакансий</string>
+    <string name="list_is_empty">Список пуст</string>
     <string name="no_internet">Нет интернета</string>
     <string name="search_for_vacancies">Поиск вакансий</string>
     <string name="no_such_vacancies">Таких вакансий нет</string>

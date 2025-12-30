@@ -52,6 +52,10 @@
         app:popUpTo="@id/searchFragment" />
 
     <action
+        android:id="@+id/action_favorite_to_detail"
+        app:destination="@id/vacancyDetailFragment" />
+
+    <action
         android:id="@+id/action_to_filter"
         app:destination="@id/settingFilterFragment"
         app:popUpTo="@id/searchFragment" />
