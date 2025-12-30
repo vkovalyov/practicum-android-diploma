@@ -35,7 +35,7 @@ class SearchVacancyViewModel(val interactor: SearchVacancyInteractor) : ViewMode
         }
 
         currentPage = START_PAGE
-        searchedVacancy= searchedVacancy.copy(found = 0, items = emptyList(), page = 1)
+        searchedVacancy = searchedVacancy.copy(found = EMPTY_SEARCH, items = emptyList(), page = START_PAGE)
         latestSearchText = changedText
         searchJob?.cancel()
         searchJob = viewModelScope.launch {
