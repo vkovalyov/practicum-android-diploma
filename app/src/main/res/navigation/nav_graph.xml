@@ -21,8 +21,13 @@
 
     <fragment
         android:id="@+id/vacancyDetailFragment"
-        android:name="ru.practicum.android.diploma.features.detail.VacancyDetailFragment" />
+        android:name="ru.practicum.android.diploma.features.detail.VacancyDetailFragment">
 
+        <argument
+            android:name="vacancyId"
+            app:argType="string" />
+
+    </fragment>
     <fragment
         android:id="@+id/settingFilterFragment"
         android:name="ru.practicum.android.diploma.features.filter.SettingFilterFragment" />
@@ -45,6 +50,10 @@
         android:id="@+id/action_to_detail"
         app:destination="@id/vacancyDetailFragment"
         app:popUpTo="@id/searchFragment" />
+
+    <action
+        android:id="@+id/action_favorite_to_detail"
+        app:destination="@id/vacancyDetailFragment" />
 
     <action
         android:id="@+id/action_to_filter"

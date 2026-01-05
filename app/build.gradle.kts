@@ -64,6 +64,7 @@ dependencies {
     implementation(libs.androidx.room.ktx)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx.v253)
+    implementation(libs.androidx.compose.foundation)
     ksp("androidx.room:room-compiler:2.5.0")
     implementation(libs.koin)
     // UI layer libraries

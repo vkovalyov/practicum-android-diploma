@@ -3,4 +3,46 @@
     <string name="main">Главная</string>
     <string name="favorite">Избранное</string>
     <string name="team">Команда</string>
+    <string name="unable_retrieve_job">Не удалось получить список вакансий</string>
+    <string name="list_is_empty">Список пуст</string>
+    <string name="no_internet">Нет интернета</string>
+    <string name="search_for_vacancies">Поиск вакансий</string>
+    <string name="no_such_vacancies">Таких вакансий нет</string>
+    <string name="enter_your_request">Введите запрос</string>
+    <string name="server_error">Ошибка сервера</string>
+
+
+    <string name="to">до</string>
+    <string name="from">от</string>
+    <string name="salary_not_specified">Зарплата не указана</string>
+
+    <string name="salary_from">от %1$s</string>
+    <string name="salary_to">до %1$s</string>
+    <string name="salary_range">от %1$s до %2$s</string>
+
+    <plurals name="vacancy_count">
+        <item quantity="one">Найдено %d вакансия</item>
+        <item quantity="other">Найдено %d вакансий</item>
+    </plurals>
+
+    <string name="vacancy">Вакансия</string>
+    <string name="vacancy_description">Описание вакансии</string>
+    <string name="key_skills">Ключевые навыки</string>
+    <string name="contacts">Контакты</string>
+    <string name="contact_person">Контактное лицо</string>
+    <string name="email">Email</string>
+    <string name="phone">Телефон</string>
+    <string name="required_experience">Требуемый опыт</string>
+    <string name="worked_on_the_app">Над приложением пыхтела команда 27/2</string>
+    <string name="kovelv">Ковалев Владимир</string>
+    <string name="kovelv_url">https://app.pachca.com/chats/3633855</string>
+    <string name="mahyanov">Артём Маханьков</string>
+    <string name="mahyanov_url">https://app.pachca.com/chats/32688554</string>
+
+    <string name="dark_theme">Тёмная тема</string>
+    <string name="cliker">Кликер</string>
+    <string name="score">Score</string>
+
+    <string name="terms_of_use">Условия пользования приложением</string>
+    <string name="terms_of_use_url">https://telegra.ph/Usloviya-polzovaniya-prilozheniem-ili-Polzovatelskoe-soglashenieLicenzionnoe-soglashenie-12-25</string>
 </resources>

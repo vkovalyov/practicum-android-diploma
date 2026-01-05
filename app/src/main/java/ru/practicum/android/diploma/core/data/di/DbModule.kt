@@ -12,7 +12,9 @@ val dbModule = module {
             androidContext(),
             AppDatabase::class.java,
             "database.db"
-        ).build()
+        )
+            .fallbackToDestructiveMigration()
+            .build()
     }
 
     single { get<AppDatabase>().favoriteVacancyDao() }
