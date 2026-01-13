@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import ru.practicum.android.diploma.core.domain.interactor.FilterInteractor
 import ru.practicum.android.diploma.core.domain.model.FilterPreferences
+import ru.practicum.android.diploma.core.domain.model.filterIsClear
 
 class SettingFilterViewModel(val interactor: FilterInteractor) : ViewModel() {
     private val stateLiveData = MutableLiveData<SettingFilterState>()

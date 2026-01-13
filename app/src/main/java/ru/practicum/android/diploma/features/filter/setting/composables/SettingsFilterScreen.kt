@@ -28,6 +28,9 @@ import ru.practicum.android.diploma.core.ui.composable.ElevatedButton
 import ru.practicum.android.diploma.features.filter.setting.mvvm.SettingFilterState
 import ru.practicum.android.diploma.features.filter.setting.mvvm.SettingFilterViewModel
 
+val PADDING_INTO_APPBAR = 6.dp
+val PADDING_BETWEEN_ELEMENT = 24.dp
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SettingFilterScreen(
@@ -78,15 +81,16 @@ fun SettingFilterScreen(
         ) {
             Column(Modifier.padding(PaddingBase)) {
                 FilterCard(stringResource(R.string.place_of_work))
-                Box(modifier = Modifier.height(6.dp))
+                Box(modifier = Modifier.height(PADDING_INTO_APPBAR))
                 FilterCard(stringResource(R.string.indactry))
-                Box(modifier = Modifier.height(24.dp))
+                Box(modifier = Modifier.height(PADDING_BETWEEN_ELEMENT))
                 SalaryTextField(
                     stateScreen.filter.salary ?: "",
                     stringResource(R.string.input_salary),
-                    {}, viewModel
+                    {},
+                    viewModel
                 )
-                Box(modifier = Modifier.height(24.dp))
+                Box(modifier = Modifier.height(PADDING_BETWEEN_ELEMENT))
                 WithoutSalaryCard(
                     stateScreen.filter.withoutSalaries ?: false,
                     viewModel
@@ -98,7 +102,7 @@ fun SettingFilterScreen(
                 if (stateScreen.showClear) {
                     AppTextButton(stringResource(R.string.clear), { viewModel.clearFilter() })
                 }
-                Box(modifier = Modifier.height(24.dp))
+                Box(modifier = Modifier.height(PADDING_BETWEEN_ELEMENT))
             }
         }
     }

@@ -13,6 +13,6 @@ val searchModule = module {
     single<SearchVacancyInteractor> { SearchVacancyInteractorImpl(get()) }
 
     viewModel {
-        SearchVacancyViewModel(get(),get())
+        SearchVacancyViewModel(get(), get())
     }
 }

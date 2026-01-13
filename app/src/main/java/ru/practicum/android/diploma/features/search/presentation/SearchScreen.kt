@@ -24,6 +24,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import ru.practicum.android.diploma.R
+import ru.practicum.android.diploma.core.domain.model.filterIsClear
 import ru.practicum.android.diploma.core.theme.PaddingBase
 import ru.practicum.android.diploma.core.ui.composable.SearchTextField
 import ru.practicum.android.diploma.features.search.presentation.composables.EmptyResult

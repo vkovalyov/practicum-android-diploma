@@ -15,12 +15,14 @@ import androidx.compose.ui.unit.dp
 import ru.practicum.android.diploma.R
 import ru.practicum.android.diploma.core.theme.Gray
 
+val FILTER_CARD_HEIGHT = 48.dp
+
 @Composable
 fun FilterCard(name: String) {
     Row(
         Modifier
             .fillMaxWidth()
-            .height(48.dp)
+            .height(FILTER_CARD_HEIGHT)
             .clickable {},
         verticalAlignment = Alignment.CenterVertically
     ) {

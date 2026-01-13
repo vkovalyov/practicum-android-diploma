@@ -46,6 +46,8 @@ import ru.practicum.android.diploma.core.theme.PaddingIntoBase
 import ru.practicum.android.diploma.core.theme.RadiusDefault
 import ru.practicum.android.diploma.features.filter.setting.mvvm.SettingFilterViewModel
 
+val TEXT_FILED_HEIGHT = 19.dp
+
 @Composable
 fun SalaryTextField(
     query: String,
@@ -98,7 +100,7 @@ fun SalaryTextField(
                     BasicTextField(
                         modifier = Modifier
                             .focusable()
-                            .height(19.dp)
+                            .height(TEXT_FILED_HEIGHT)
                             .background(MaterialTheme.colorScheme.surface)
                             .focusRequester(focusRequester)
                             .onFocusChanged {
@@ -108,14 +110,17 @@ fun SalaryTextField(
                         value = query,
                         onValueChange = { newValue ->
                             onValueChange(newValue)
-                              viewModel.changeSalary(newValue)
+                            viewModel.changeSalary(newValue)
                         },
                         keyboardActions = KeyboardActions(onDone = {
                             focusManager.clearFocus()
-                        }),
+                        }
+                        ),
                         cursorBrush = SolidColor(Blue),
                         singleLine = true,
-                        textStyle = MaterialTheme.typography.bodyMedium.copy(color = MaterialTheme.colorScheme.onSurface)
+                        textStyle = MaterialTheme.typography.bodyMedium.copy(
+                            color = MaterialTheme.colorScheme.onSurface
+                        )
                     )
                     if (query.isEmpty()) {
                         Text(

@@ -5,11 +5,11 @@ data class FilterPreferences(
     val salary: String? = null,
     val industryId: Int? = null,
     val areaId: Int? = null
-) {
-    fun filterIsClear(): Boolean {
-        return !(salary != null ||
-                areaId != null ||
-                industryId != null ||
-                withoutSalaries != null)
-    }
+)
+
+fun FilterPreferences.filterIsClear(): Boolean {
+    return !(salary != null ||
+        areaId != null ||
+        industryId != null ||
+        withoutSalaries != null)
 }
