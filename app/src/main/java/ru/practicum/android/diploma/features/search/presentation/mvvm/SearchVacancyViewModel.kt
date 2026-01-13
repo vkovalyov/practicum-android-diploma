@@ -7,14 +7,22 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import ru.practicum.android.diploma.core.domain.interactor.FilterInteractor
 import ru.practicum.android.diploma.core.domain.model.ApiResult
+import ru.practicum.android.diploma.core.domain.model.FilterPreferences
 import ru.practicum.android.diploma.features.search.domain.entity.SearchVacancies
 import ru.practicum.android.diploma.features.search.domain.entity.Vacancy
 import ru.practicum.android.diploma.features.search.domain.interactor.SearchVacancyInteractor
 
-class SearchVacancyViewModel(val interactor: SearchVacancyInteractor) : ViewModel() {
-    private val stateLiveData = MutableLiveData<SearchVacancyState>()
+class SearchVacancyViewModel(
+    val interactor: SearchVacancyInteractor,
+    val filterInteractor: FilterInteractor
+) : ViewModel() {
+    private val stateLiveData = MutableLiveData<SearchVacancyState>(SearchVacancyState.Initial)
     fun observeState(): LiveData<SearchVacancyState> = stateLiveData
+
+    private val stateFilterLiveData = MutableLiveData<FilterPreferences?>()
+    fun observeFilterState(): LiveData<FilterPreferences?> = stateFilterLiveData
 
     private var searchJob: Job? = null
 
@@ -28,6 +36,17 @@ class SearchVacancyViewModel(val interactor: SearchVacancyInteractor) : ViewMode
         page = 0,
         items = emptyList()
     )
+
+    init {
+        viewModelScope.launch {
+            filterInteractor.filter.collect { value ->
+                stateFilterLiveData.postValue(value)
+                val searchText = latestSearchText
+                latestSearchText = ""
+                search(searchText)
+            }
+        }
+    }
 
     fun search(changedText: String) {
         if (latestSearchText == changedText) {
@@ -54,7 +73,7 @@ class SearchVacancyViewModel(val interactor: SearchVacancyInteractor) : ViewMode
                         items = searchedVacancy.items,
                         page = currentPage,
                         pages = maxPages,
-                        found = searchedVacancy.found
+                        found = searchedVacancy.found,
                     )
                 )
             )
@@ -69,11 +88,28 @@ class SearchVacancyViewModel(val interactor: SearchVacancyInteractor) : ViewMode
 
     private fun request(searchText: String) {
         viewModelScope.launch {
+            val withoutSalary = stateFilterLiveData.value?.withoutSalaries
+            val salary = stateFilterLiveData.value?.salary
+
+            val params = mutableMapOf<String, String>().apply {
+                put("text", searchText)
+                put("page", "$currentPage")
+                withoutSalary?.let {
+                    put(
+                        "only_with_salary",
+                        "$withoutSalary"
+                    )
+                }
+                salary?.let {
+                    put(
+                        "salary",
+                        salary
+                    )
+                }
+            }.toMap()
+
             when (val result = interactor.searchVacancies(
-                mapOf(
-                    "text" to searchText,
-                    "page" to "$currentPage"
-                )
+                params
             )) {
                 ApiResult.Error -> renderState(SearchVacancyState.Error)
                 ApiResult.NoInternet -> renderState(SearchVacancyState.NoInternet)
