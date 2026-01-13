@@ -112,9 +112,10 @@ fun SalaryTextField(
                             onValueChange(newValue)
                             viewModel.changeSalary(newValue)
                         },
-                        keyboardActions = KeyboardActions(onDone = {
-                            focusManager.clearFocus()
-                        }
+                        keyboardActions = KeyboardActions(
+                            onDone = {
+                                focusManager.clearFocus()
+                            }
                         ),
                         cursorBrush = SolidColor(Blue),
                         singleLine = true,

@@ -33,9 +33,8 @@ class VacancySearchFragment : Fragment() {
                     SearchScreen(
                         viewModel,
                         onVacancyClick = ::openVacancyDetail,
-                        onFilterClick = :: openFilter
-                        )
-
+                        onFilterClick = ::openFilter
+                    )
                 }
             }
         }
@@ -45,6 +44,7 @@ class VacancySearchFragment : Fragment() {
     fun openFilter() {
         findNavController().navigate(R.id.action_to_filter)
     }
+
     fun openVacancyDetail(id: String) {
         val bundle = bundleOf("vacancyId" to id)
         findNavController().navigate(R.id.action_to_detail, bundle)

@@ -103,8 +103,7 @@ fun SearchScreen(
                     onVacancyClick,
                     { viewModel.searchNextPage() },
                     listState = listState,
-
-                    )
+                )
 
                 is SearchVacancyState.LoadingPage -> SearchContent(
                     currentState.searchVacancies,
