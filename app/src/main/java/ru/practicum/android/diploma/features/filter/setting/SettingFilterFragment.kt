@@ -1,24 +1,25 @@
-package ru.practicum.android.diploma.features.search
+package ru.practicum.android.diploma.features.filter.setting
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import ru.practicum.android.diploma.R
 import ru.practicum.android.diploma.core.theme.AppTheme
-import ru.practicum.android.diploma.features.search.presentation.SearchScreen
-import ru.practicum.android.diploma.features.search.presentation.mvvm.SearchVacancyViewModel
+import ru.practicum.android.diploma.features.filter.setting.composables.SettingFilterScreen
+import ru.practicum.android.diploma.features.filter.setting.mvvm.SettingFilterViewModel
 import kotlin.getValue
 
-class VacancySearchFragment : Fragment() {
-    private val viewModel: SearchVacancyViewModel by viewModel()
+class SettingFilterFragment : Fragment() {
 
+    private val viewModel: SettingFilterViewModel by viewModel()
+
+    @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -30,23 +31,14 @@ class VacancySearchFragment : Fragment() {
             )
             setContent {
                 AppTheme {
-                    SearchScreen(
-                        viewModel,
-                        onVacancyClick = ::openVacancyDetail,
-                        onFilterClick = ::openFilter
-                    )
+                    SettingFilterScreen(viewModel, onBack = ::onBack)
                 }
             }
         }
         return composeView
     }
 
-    fun openFilter() {
-        findNavController().navigate(R.id.action_to_filter)
-    }
-
-    fun openVacancyDetail(id: String) {
-        val bundle = bundleOf("vacancyId" to id)
-        findNavController().navigate(R.id.action_to_detail, bundle)
+    fun onBack() {
+        findNavController().popBackStack()
     }
 }
