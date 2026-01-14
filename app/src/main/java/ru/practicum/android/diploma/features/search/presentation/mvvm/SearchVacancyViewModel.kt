@@ -89,10 +89,11 @@ class SearchVacancyViewModel(
 
     fun buildParams(
         searchText: String,
-        withoutSalary: Boolean?,
-        salary: String?,
-        industryId: String?
     ): Map<String, String> {
+        val withoutSalary = stateFilterLiveData.value?.withoutSalaries
+        val salary = stateFilterLiveData.value?.salary
+        val industryId = stateFilterLiveData.value?.industryId
+
         return mutableMapOf<String, String>().apply {
             put("text", searchText)
             put("page", "$currentPage")
@@ -119,16 +120,7 @@ class SearchVacancyViewModel(
 
     private fun request(searchText: String) {
         viewModelScope.launch {
-            val withoutSalary = stateFilterLiveData.value?.withoutSalaries
-            val salary = stateFilterLiveData.value?.salary
-            val industryId = stateFilterLiveData.value?.industryId
-
-            val params = buildParams(
-                searchText,
-                withoutSalary,
-                salary,
-                industryId
-            )
+            val params = buildParams(searchText)
 
             when (val result = interactor.searchVacancies(
                 params
