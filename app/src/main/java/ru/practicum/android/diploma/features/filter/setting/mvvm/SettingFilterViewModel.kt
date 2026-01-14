@@ -61,6 +61,11 @@ class SettingFilterViewModel(val interactor: FilterInteractor) : ViewModel() {
         renderAndCheck()
     }
 
+    fun changeIndustry(industryId: String, industryName: String) {
+        filterPreferences = filterPreferences.copy(industryId = industryId, industryName = industryName)
+        renderAndCheck()
+    }
+
     fun changeWithoutSalaries(value: Boolean) {
         val withoutSalaries = if (value) true else null
         filterPreferences = filterPreferences.copy(withoutSalaries = withoutSalaries)

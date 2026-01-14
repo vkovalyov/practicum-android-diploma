@@ -26,6 +26,16 @@ class SettingFilterFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<Bundle>("industry_result")
+            ?.observe(viewLifecycleOwner) { result ->
+                val industryId = result.getString("industryId")
+                val industryName = result.getString("industryName")
+
+                if (industryId != null && industryName != null) {
+                    viewModel.changeIndustry(industryId, industryName)
+                }
+            }
+
         val composeView = ComposeView(requireContext()).apply {
             setViewCompositionStrategy(
                 ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed
