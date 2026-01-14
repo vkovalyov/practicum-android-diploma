@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -31,11 +32,22 @@ class FilterIndustriesFragment : Fragment() {
                     IndustryScreen(
                         viewModel = viewModel,
                         onBack = { findNavController().popBackStack() },
-                        onApply = { findNavController().popBackStack() }
+                        onApply = ::onApply
                     )
                 }
             }
         }
         return composeView
+    }
+
+    fun onApply(industryId: String, industryName: String) {
+        val result = bundleOf(
+            "industryId" to industryId,
+            "industryName" to industryName
+        )
+
+        findNavController().previousBackStackEntry?.savedStateHandle?.set("industry_result", result)
+
+        findNavController().popBackStack()
     }
 }

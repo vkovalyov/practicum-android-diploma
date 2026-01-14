@@ -1,5 +1,6 @@
 package ru.practicum.android.diploma.features.filter.industry.composables
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -8,6 +9,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -28,6 +30,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import ru.practicum.android.diploma.R
+import ru.practicum.android.diploma.core.theme.Blue
 import ru.practicum.android.diploma.core.theme.PaddingBase
 import ru.practicum.android.diploma.core.ui.composable.ElevatedButton
 import ru.practicum.android.diploma.features.filter.industry.mvvm.IndustryState
@@ -40,7 +43,7 @@ private val BOTTOM_PADDING = 24.dp
 fun IndustryScreen(
     viewModel: IndustryViewModel,
     onBack: () -> Unit,
-    onApply: () -> Unit
+    onApply: (industryId: String, industryName: String) -> Unit,
 ) {
     val state by viewModel.observeState().observeAsState(initial = IndustryState.Loading)
     var searchQuery by remember { mutableStateOf("") }
@@ -78,11 +81,12 @@ fun IndustryScreen(
         ) {
             when (val currentState = state) {
                 is IndustryState.Loading -> {
-                    Box(
+                    Column(
                         modifier = Modifier.fillMaxSize(),
-                        contentAlignment = Alignment.Center
+                        verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        Text(stringResource(R.string.loading))
+                        CircularProgressIndicator(color = Blue)
                     }
                 }
 
@@ -128,7 +132,7 @@ fun IndustryScreen(
                             ElevatedButton(
                                 text = stringResource(R.string.select),
                                 onClick = {
-                                    viewModel.applySelection { onApply() }
+                                    viewModel.applySelection(onApply = onApply)
                                 }
                             )
                             Spacer(modifier = Modifier.height(BOTTOM_PADDING))

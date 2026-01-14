@@ -14,6 +14,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
@@ -45,10 +46,15 @@ fun SearchScreen(
     onVacancyClick: (String) -> Unit,
     onFilterClick: () -> Unit
 ) {
-    val state by viewModel.observeState().observeAsState(initial = SearchVacancyState.Initial)
+    val state by viewModel.observeState().observeAsState(initial = SearchVacancyState.Initial(""))
     val filter by viewModel.observeFilterState().observeAsState(initial = null)
 
     var query by remember { mutableStateOf("") }
+
+    LaunchedEffect(state) {
+        query = state.searchText
+    }
+
     Scaffold(
         topBar = {
             TopAppBar(

@@ -18,7 +18,7 @@ class SearchVacancyViewModel(
     val interactor: SearchVacancyInteractor,
     val filterInteractor: FilterInteractor
 ) : ViewModel() {
-    private val stateLiveData = MutableLiveData<SearchVacancyState>(SearchVacancyState.Initial)
+    private val stateLiveData = MutableLiveData<SearchVacancyState>(SearchVacancyState.Initial(searchText = ""))
     fun observeState(): LiveData<SearchVacancyState> = stateLiveData
 
     private val stateFilterLiveData = MutableLiveData<FilterPreferences?>()
@@ -59,7 +59,7 @@ class SearchVacancyViewModel(
         searchJob?.cancel()
         searchJob = viewModelScope.launch {
             delay(SEARCH_DEBOUNCE_DELAY)
-            renderState(SearchVacancyState.Loading)
+            renderState(SearchVacancyState.Loading(searchText = latestSearchText))
             request(changedText)
         }
     }
@@ -74,7 +74,8 @@ class SearchVacancyViewModel(
                         page = currentPage,
                         pages = maxPages,
                         found = searchedVacancy.found,
-                    )
+                    ),
+                    searchText = latestSearchText
                 )
             )
             searchJob?.cancel()
@@ -111,11 +112,11 @@ class SearchVacancyViewModel(
             when (val result = interactor.searchVacancies(
                 params
             )) {
-                ApiResult.Error -> renderState(SearchVacancyState.Error)
-                ApiResult.NoInternet -> renderState(SearchVacancyState.NoInternet)
+                ApiResult.Error -> renderState(SearchVacancyState.Error(searchText = latestSearchText))
+                ApiResult.NoInternet -> renderState(SearchVacancyState.NoInternet(searchText = latestSearchText))
                 is ApiResult.Success ->
                     if (result.value.found == EMPTY_SEARCH) {
-                        renderState(SearchVacancyState.ContentEmpty)
+                        renderState(SearchVacancyState.ContentEmpty(searchText = latestSearchText))
                     } else {
                         currentPage = result.value.page
                         maxPages = result.value.pages
@@ -131,7 +132,8 @@ class SearchVacancyViewModel(
                         )
                         renderState(
                             SearchVacancyState.Content(
-                                searchedVacancy
+                                searchedVacancy,
+                                searchText = latestSearchText
                             )
                         )
                     }
@@ -140,7 +142,7 @@ class SearchVacancyViewModel(
     }
 
     fun clear() {
-        renderState(SearchVacancyState.Initial)
+        renderState(SearchVacancyState.Initial(searchText = latestSearchText))
     }
 
     private fun renderState(state: SearchVacancyState) {

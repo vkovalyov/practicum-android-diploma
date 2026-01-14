@@ -43,6 +43,7 @@ class IndustryViewModel(
                     }
                     renderContent()
                 }
+
                 is ApiResult.Error, is ApiResult.NoInternet -> {
                     stateLiveData.postValue(IndustryState.Error)
                 }
@@ -64,14 +65,11 @@ class IndustryViewModel(
         renderContent()
     }
 
-    fun applySelection(onComplete: () -> Unit) {
+    fun applySelection(onApply: (industryId: String, industryName: String) -> Unit) {
         viewModelScope.launch {
-            val updatedFilter = currentFilter.copy(
-                industryId = selectedIndustry?.id,
-                industryName = selectedIndustry?.name
-            )
-            filterInteractor.save(updatedFilter)
-            onComplete()
+            if (selectedIndustry != null) {
+                onApply(selectedIndustry!!.id, selectedIndustry!!.name)
+            }
         }
     }
 
