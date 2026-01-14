@@ -35,7 +35,8 @@ val PADDING_BETWEEN_ELEMENT = 24.dp
 @Composable
 fun SettingFilterScreen(
     viewModel: SettingFilterViewModel,
-    onBack: () -> Unit
+    onBack: () -> Unit,
+    onIndustryClick: () -> Unit = {}
 ) {
     val state by viewModel.observeState().observeAsState(
         initial = SettingFilterState.Content()
@@ -82,7 +83,11 @@ fun SettingFilterScreen(
             Column(Modifier.padding(PaddingBase)) {
                 FilterCard(stringResource(R.string.place_of_work))
                 Box(modifier = Modifier.height(PADDING_INTO_APPBAR))
-                FilterCard(stringResource(R.string.indactry))
+                FilterCard(
+                    name = stringResource(R.string.indactry),
+                    value = stateScreen.filter.industryName,
+                    onClick = onIndustryClick
+                )
                 Box(modifier = Modifier.height(PADDING_BETWEEN_ELEMENT))
                 SalaryTextField(
                     stateScreen.filter.salary ?: "",

@@ -58,4 +58,10 @@
     <string name="input_salary">Введите сумму</string>
     <string name="expected_salary">Ожидаемая зарплата</string>
 
+    <string name="select_industry">Выбор отрасли</string>
+    <string name="enter_industry">Введите отрасль</string>
+    <string name="select">Выбрать</string>
+    <string name="loading">Загрузка…</string>
+    <string name="unable_retrieve_industries">Не удалось получить список отраслей</string>
+
 </resources>

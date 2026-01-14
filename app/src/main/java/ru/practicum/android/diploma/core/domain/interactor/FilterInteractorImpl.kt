@@ -15,7 +15,8 @@ class FilterInteractorImpl(private val repository: FilterRepository) : FilterInt
                     salary = value.salary,
                     withoutSalaries = value.withoutSalaries,
                     areaId = value.areaId,
-                    industryId = value.industryId
+                    industryId = value.industryId,
+                    industryName = value.industryName
                 )
             }
         }

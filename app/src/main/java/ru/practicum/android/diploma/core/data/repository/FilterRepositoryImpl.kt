@@ -18,7 +18,8 @@ class FilterRepositoryImpl(
                     withoutSalaries = value.withoutSalaries,
                     salary = value.salary,
                     areaId = value.areaId,
-                    industryId = value.industryId
+                    industryId = value.industryId,
+                    industryName = value.industryName
                 )
             } else {
                 null
@@ -30,7 +31,8 @@ class FilterRepositoryImpl(
             withoutSalaries = filter.withoutSalaries,
             salary = filter.salary,
             areaId = filter.areaId,
-            industryId = filter.industryId
+            industryId = filter.industryId,
+            industryName = filter.industryName
         )
     )
 
