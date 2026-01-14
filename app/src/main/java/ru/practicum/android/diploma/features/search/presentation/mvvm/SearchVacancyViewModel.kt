@@ -87,27 +87,48 @@ class SearchVacancyViewModel(
 
     }
 
+    fun buildParams(
+        searchText: String,
+        withoutSalary: Boolean?,
+        salary: String?,
+        industryId: String?
+    ): Map<String, String> {
+        return mutableMapOf<String, String>().apply {
+            put("text", searchText)
+            put("page", "$currentPage")
+            withoutSalary?.let {
+                put(
+                    "only_with_salary",
+                    "$withoutSalary"
+                )
+            }
+            salary?.let {
+                put(
+                    "salary",
+                    salary
+                )
+            }
+            industryId?.let {
+                put(
+                    "industry",
+                    industryId
+                )
+            }
+        }.toMap()
+    }
+
     private fun request(searchText: String) {
         viewModelScope.launch {
             val withoutSalary = stateFilterLiveData.value?.withoutSalaries
             val salary = stateFilterLiveData.value?.salary
+            val industryId = stateFilterLiveData.value?.industryId
 
-            val params = mutableMapOf<String, String>().apply {
-                put("text", searchText)
-                put("page", "$currentPage")
-                withoutSalary?.let {
-                    put(
-                        "only_with_salary",
-                        "$withoutSalary"
-                    )
-                }
-                salary?.let {
-                    put(
-                        "salary",
-                        salary
-                    )
-                }
-            }.toMap()
+            val params = buildParams(
+                searchText,
+                withoutSalary,
+                salary,
+                industryId
+            )
 
             when (val result = interactor.searchVacancies(
                 params
