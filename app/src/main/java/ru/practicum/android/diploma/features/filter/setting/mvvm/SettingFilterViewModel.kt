@@ -24,6 +24,7 @@ class SettingFilterViewModel(val interactor: FilterInteractor) : ViewModel() {
                         salary = value?.salary,
                         areaId = value?.areaId,
                         industryId = value?.industryId,
+                        industryName = value?.industryName,
                         withoutSalaries = value?.withoutSalaries
                     )
                 filterPreferences = initFilter

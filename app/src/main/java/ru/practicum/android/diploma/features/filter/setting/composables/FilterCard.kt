@@ -18,19 +18,23 @@ import ru.practicum.android.diploma.core.theme.Gray
 val FILTER_CARD_HEIGHT = 48.dp
 
 @Composable
-fun FilterCard(name: String) {
+fun FilterCard(
+    name: String,
+    value: String? = null,
+    onClick: () -> Unit = {}
+) {
     Row(
         Modifier
             .fillMaxWidth()
             .height(FILTER_CARD_HEIGHT)
-            .clickable {},
+            .clickable { onClick() },
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
             modifier = Modifier.weight(1f),
-            text = name,
+            text = value ?: name,
             style = MaterialTheme.typography.bodyMedium,
-            color = Gray
+            color = if (value != null) MaterialTheme.colorScheme.onBackground else Gray
         )
         Icon(
             painter = painterResource(id = R.drawable.arrow__forward),

@@ -10,6 +10,7 @@ import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import ru.practicum.android.diploma.R
 import ru.practicum.android.diploma.core.theme.AppTheme
 import ru.practicum.android.diploma.features.filter.setting.composables.SettingFilterScreen
 import ru.practicum.android.diploma.features.filter.setting.mvvm.SettingFilterViewModel
@@ -31,7 +32,11 @@ class SettingFilterFragment : Fragment() {
             )
             setContent {
                 AppTheme {
-                    SettingFilterScreen(viewModel, onBack = ::onBack)
+                    SettingFilterScreen(
+                        viewModel = viewModel,
+                        onBack = ::onBack,
+                        onIndustryClick = ::onIndustryClick
+                    )
                 }
             }
         }
@@ -40,5 +45,9 @@ class SettingFilterFragment : Fragment() {
 
     fun onBack() {
         findNavController().popBackStack()
+    }
+
+    fun onIndustryClick() {
+        findNavController().navigate(R.id.action_to_industries_filter)
     }
 }

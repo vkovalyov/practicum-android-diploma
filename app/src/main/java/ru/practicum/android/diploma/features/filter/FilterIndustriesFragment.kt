@@ -4,18 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.practicum.android.diploma.core.theme.AppTheme
+import ru.practicum.android.diploma.features.filter.industry.composables.IndustryScreen
+import ru.practicum.android.diploma.features.filter.industry.mvvm.IndustryViewModel
 
 class FilterIndustriesFragment : Fragment() {
+
+    private val viewModel: IndustryViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,21 +28,11 @@ class FilterIndustriesFragment : Fragment() {
             )
             setContent {
                 AppTheme {
-                    Scaffold { innerPadding ->
-                        Box(
-                            modifier = Modifier
-                                .fillMaxSize()
-                                .padding(top = innerPadding.calculateTopPadding())
-                        ) {
-                            Box(
-                                modifier = Modifier.fillMaxSize()
-                            ) {
-                                Text("Выбор отрасли")
-
-                            }
-                        }
-
-                    }
+                    IndustryScreen(
+                        viewModel = viewModel,
+                        onBack = { findNavController().popBackStack() },
+                        onApply = { findNavController().popBackStack() }
+                    )
                 }
             }
         }
