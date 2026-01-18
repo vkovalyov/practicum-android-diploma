@@ -6,6 +6,7 @@ plugins {
     id("ru.practicum.android.diploma.plugins.developproperties")
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.ksp)
+    id("kotlin-parcelize")
 }
 
 android {
@@ -79,6 +80,8 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
     implementation("io.coil-kt:coil-compose:2.7.0")
+    implementation("androidx.datastore:datastore-preferences:1.1.1")
+    implementation("androidx.datastore:datastore-core:1.2.0")
     // region Unit tests
     testImplementation(libs.unitTests.junit)
     // endregion

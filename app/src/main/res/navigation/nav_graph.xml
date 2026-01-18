@@ -30,7 +30,7 @@
     </fragment>
     <fragment
         android:id="@+id/settingFilterFragment"
-        android:name="ru.practicum.android.diploma.features.filter.SettingFilterFragment" />
+        android:name="ru.practicum.android.diploma.features.filter.setting.SettingFilterFragment" />
 
     <fragment
         android:id="@+id/countryFilterFragment"

@@ -30,12 +30,19 @@ class VacancySearchFragment : Fragment() {
             )
             setContent {
                 AppTheme {
-                    SearchScreen(viewModel, onVacancyClick = ::openVacancyDetail)
-
+                    SearchScreen(
+                        viewModel,
+                        onVacancyClick = ::openVacancyDetail,
+                        onFilterClick = ::openFilter
+                    )
                 }
             }
         }
         return composeView
+    }
+
+    fun openFilter() {
+        findNavController().navigate(R.id.action_to_filter)
     }
 
     fun openVacancyDetail(id: String) {

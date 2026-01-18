@@ -45,4 +45,23 @@
 
     <string name="terms_of_use">Условия пользования приложением</string>
     <string name="terms_of_use_url">https://telegra.ph/Usloviya-polzovaniya-prilozheniem-ili-Polzovatelskoe-soglashenieLicenzionnoe-soglashenie-12-25</string>
+
+    <string name="filter_settings">Настройки фильтрации</string>
+
+    <string name="place_of_work">Место работы</string>
+    <string name="indactry">Отрасль</string>
+    <string name="not_show_without_salary">Не показывать без зарплаты</string>
+
+    <string name="save">Применить</string>
+    <string name="clear">Сбросить</string>
+
+    <string name="input_salary">Введите сумму</string>
+    <string name="expected_salary">Ожидаемая зарплата</string>
+
+    <string name="select_industry">Выбор отрасли</string>
+    <string name="enter_industry">Введите отрасль</string>
+    <string name="select">Выбрать</string>
+    <string name="loading">Загрузка…</string>
+    <string name="unable_retrieve_industries">Не удалось получить список отраслей</string>
+
 </resources>
