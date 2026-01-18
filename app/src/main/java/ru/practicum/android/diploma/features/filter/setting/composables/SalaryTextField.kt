@@ -109,8 +109,10 @@ fun SalaryTextField(
                         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                         value = query,
                         onValueChange = { newValue ->
-                            onValueChange(newValue)
-                            viewModel.changeSalary(newValue)
+                            if (newValue.all { it.isDigit() }) {
+                                onValueChange(newValue)
+                                viewModel.changeSalary(newValue)
+                            }
                         },
                         keyboardActions = KeyboardActions(
                             onDone = {
