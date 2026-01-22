@@ -155,6 +155,7 @@ class SearchVacancyViewModel(
     }
 
     fun clear() {
+        latestSearchText = ""
         renderState(SearchVacancyState.Initial(searchText = latestSearchText))
     }
 
